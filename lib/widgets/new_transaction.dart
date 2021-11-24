@@ -27,7 +27,7 @@ class NewTransaction extends StatelessWidget {
               ),
               controller: amountController,
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 print(titleController.text);
                 print(amountController.text);
@@ -42,7 +42,8 @@ class NewTransaction extends StatelessWidget {
                 'Add Transaction',
                 style: TextStyle(
                   fontSize: 17,
-                  color: Colors.white,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                   backgroundColor: Colors.blue,
                 ),
               ),
