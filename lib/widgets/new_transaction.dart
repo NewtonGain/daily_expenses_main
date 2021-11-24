@@ -6,15 +6,14 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 void submitData(){
-  final enterTitle= titleController;
-  final enterAmount= amountController;
-  if (enterTitle.text.isEmpty || double.parse(enterAmount.text) < 0) return;
+  final enterTitle= titleController.text;
+  final enterAmount= double.parse(amountController.text);
+  if (enterTitle.isEmpty || enterAmount < 0) return;
   addTx(
-      enterTitle.text,
-       double.parse(
-       enterAmount.text,
-                  ),
-                );
+      enterTitle,
+    enterAmount,
+                  
+   );
 }
   @override
   Widget build(BuildContext context) {
