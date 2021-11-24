@@ -24,7 +24,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      '${tx.amount} (Taka)',
+                      '\$${tx.amount}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
