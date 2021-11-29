@@ -1,54 +1,90 @@
-import 'package:daily_expenses/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
+import 'model/transition.dart';
+import 'widget/new_transaction.dart';
+import 'widget/transitionList.dart';
 
-void main()=>runApp(MyApp());
+void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Daily Expenses",
+      theme: ThemeData(primarySwatch: Colors.red, accentColor: Colors.amber),
+      home: MyApp(),
+    ));
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // ignore: non_constant_identifier_names
+  List<ProductTrastion> _product_transtion = [
+    ProductTrastion(
+      id: '1',
+      title: "Python Book",
+      amount: 450.0,
+      addTime: DateTime.now(),
+    ),
+    ProductTrastion(
+      id: '2',
+      title: "Dart Book",
+      amount: 650.0,
+      addTime: DateTime.now(),
+    ),
+  ];
+  void _addTransaction(String title, double amount) {
+    final newTx = ProductTrastion(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      addTime: DateTime.now(),
+    );
+    setState(() {
+      _product_transtion.add(newTx);
+    });
+  }
+
+  void _addnewTransaction(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: NewTransaction(_addTransaction),
+            onTap: () {},
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Daily Expenses',
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.blue,
-            actions: [IconButton(onPressed: (){},
-            icon: Icon(
-              Icons.add),),],
-          ),
-          backgroundColor: Colors.indigo,
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  width: double.infinity,
-                  child: Card(
-                    color: Colors.purple,
-                    child: Center(
-                      child: Text(
-                        'CHART',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                UserTrasaction(),
-              ],
-              
-            ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
-          floatingActionButton: FloatingActionButton(onPressed: (){},child: Icon(Icons.add),),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Card App"),
+        actions: [
+          IconButton(
+              onPressed: () => _addnewTransaction(context),
+              icon: Icon(Icons.add))
+        ],
+      ),
+      backgroundColor: Colors.grey.shade400,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: Transition(transaction: _product_transtion),
+            )
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _addnewTransaction(context);
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
