@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:daily_expenses/widget/input_transaction.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NewTransaction extends StatelessWidget {
   final Function addTxTr;
@@ -16,8 +17,14 @@ class NewTransaction extends StatelessWidget {
             child: Card(
               child: Text(
                 'Chart',
-                textAlign: TextAlign.center,
-                style: TextStyle(),
+                style: GoogleFonts.quicksand(
+    textStyle: Theme.of(context).textTheme.headline4,
+    
+    fontSize: 48,
+    
+    
+  )
+                
               ),
             ),
           ),

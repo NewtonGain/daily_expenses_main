@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:daily_expenses/model/transition.dart';
 import 'package:daily_expenses/widget/new_transaction.dart';
 import 'package:daily_expenses/widget/transitionList.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserTransction extends StatefulWidget {
   const UserTransction({Key? key}) : super(key: key);

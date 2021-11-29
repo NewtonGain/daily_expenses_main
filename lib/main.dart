@@ -5,14 +5,16 @@ import 'widget/transitionList.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
+      
       title: "Daily Expenses",
-      theme: ThemeData(primarySwatch: Colors.red, accentColor: Colors.amber),
+      theme: ThemeData(
+        primarySwatch: Colors.red, accentColor: Colors.blue),
       home: MyApp(),
     ));
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
+ 
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -61,7 +63,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Card App"),
+        centerTitle: true,
+        title: Text("Daily Expenses"),
         actions: [
           IconButton(
               onPressed: () => _addnewTransaction(context),
